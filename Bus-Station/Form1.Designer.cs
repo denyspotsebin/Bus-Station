@@ -41,10 +41,10 @@
             // dgvTrips
             // 
             dgvTrips.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTrips.Dock = DockStyle.Fill;
-            dgvTrips.Location = new Point(0, 0);
+            dgvTrips.Dock = DockStyle.Bottom;
+            dgvTrips.Location = new Point(0, 186);
             dgvTrips.Name = "dgvTrips";
-            dgvTrips.Size = new Size(1173, 846);
+            dgvTrips.Size = new Size(1173, 660);
             dgvTrips.TabIndex = 0;
             dgvTrips.CellContentClick += dgvTrips_CellContentClick;
             // 

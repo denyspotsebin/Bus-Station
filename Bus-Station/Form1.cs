@@ -18,9 +18,11 @@ namespace Bus_Station
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            var lodedTrips = DataService.LoadTrips();
-            _trips = new BindingList<Trip>(lodedTrips);
+            
+            var loadedTrips = DataService.LoadTrips();
+            _trips = new BindingList<Trip>(loadedTrips);
 
+            dgvTrips.AutoGenerateColumns = true;
             dgvTrips.DataSource = _trips;
         }
         private void btnSearch_Click(object sender, EventArgs e)
