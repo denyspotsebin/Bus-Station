@@ -30,6 +30,7 @@
         {
             dgvTrips = new DataGridView();
             panel1 = new Panel();
+            btnBoardingList = new Button();
             btnAddTrip = new Button();
             btnSellTicket = new Button();
             btnSearch = new Button();
@@ -50,6 +51,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnBoardingList);
             panel1.Controls.Add(btnAddTrip);
             panel1.Controls.Add(btnSellTicket);
             panel1.Controls.Add(btnSearch);
@@ -60,12 +62,23 @@
             panel1.Size = new Size(1222, 196);
             panel1.TabIndex = 1;
             // 
+            // btnBoardingList
+            // 
+            btnBoardingList.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBoardingList.Location = new Point(1052, 66);
+            btnBoardingList.Name = "btnBoardingList";
+            btnBoardingList.Size = new Size(170, 68);
+            btnBoardingList.TabIndex = 4;
+            btnBoardingList.Text = "Посадкова відомість";
+            btnBoardingList.UseVisualStyleBackColor = true;
+            btnBoardingList.Click += btnBoardingList_Click;
+            // 
             // btnAddTrip
             // 
             btnAddTrip.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddTrip.Location = new Point(958, 93);
+            btnAddTrip.Location = new Point(1052, 128);
             btnAddTrip.Name = "btnAddTrip";
-            btnAddTrip.Size = new Size(202, 61);
+            btnAddTrip.Size = new Size(170, 68);
             btnAddTrip.TabIndex = 3;
             btnAddTrip.Text = "Додати рейс";
             btnAddTrip.UseVisualStyleBackColor = true;
@@ -74,9 +87,9 @@
             // btnSellTicket
             // 
             btnSellTicket.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSellTicket.Location = new Point(958, 12);
+            btnSellTicket.Location = new Point(1052, 0);
             btnSellTicket.Name = "btnSellTicket";
-            btnSellTicket.Size = new Size(202, 58);
+            btnSellTicket.Size = new Size(170, 68);
             btnSellTicket.TabIndex = 2;
             btnSellTicket.Text = "Оформити квиток";
             btnSellTicket.UseVisualStyleBackColor = true;
@@ -85,7 +98,7 @@
             // btnSearch
             // 
             btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSearch.Location = new Point(627, 77);
+            btnSearch.Location = new Point(587, 90);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(75, 23);
             btnSearch.TabIndex = 1;
@@ -96,7 +109,7 @@
             // txtSearch
             // 
             txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtSearch.Location = new Point(168, 77);
+            txtSearch.Location = new Point(125, 90);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(428, 23);
             txtSearch.TabIndex = 0;
@@ -127,5 +140,6 @@
         private Button btnSellTicket;
         private Button btnSearch;
         private TextBox txtSearch;
+        private Button btnBoardingList;
     }
 }

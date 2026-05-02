@@ -56,7 +56,7 @@ namespace Bus_Station
                         if (sellForm.ShowDialog() == DialogResult.OK)
                         {
                             Ticket newTicket = sellForm.CreatedTicket;
-                            newTicket.SelectedTrip = selectedTrip; 
+                            newTicket.SelectedTrip = selectedTrip;
                             newTicket.SeatNumber = selectedTrip.Tickets.Count + 1;
 
                             selectedTrip.Tickets.Add(newTicket);
@@ -96,6 +96,29 @@ namespace Bus_Station
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBoardingList_Click(object sender, EventArgs e)
+        {
+            if (dgvTrips.CurrentRow != null)
+            {
+                Trip selectedTrip = (Trip)dgvTrips.CurrentRow.DataBoundItem;
+
+                using (BoardingListForm boardingForm = new BoardingListForm(selectedTrip))
+                {
+                    boardingForm.ShowDialog();
+
+                    if (boardingForm.DialogResult == DialogResult.OK)
+                    {
+                        dgvTrips.Refresh();
+                        DataService.SaveTrips(_trips.ToList());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть рейс зі списку.");
+            }
         }
     }
 }
