@@ -35,7 +35,15 @@ namespace Bus_Station
                 t.IntermediateStations.Any(s => s.Name.ToLower().Contains(query))
                 ).ToList();
 
+            if (filtered.Count == 0)
+            {
+                MessageBox.Show("На жаль, рейсів за таким напрямком не знайдено.",
+                        "Результат пошуку",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+            }
             dgvTrips.DataSource = new BindingList<Trip>(filtered);
+
         }
 
         private void dgvTrips_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,5 +128,7 @@ namespace Bus_Station
                 MessageBox.Show("Будь ласка, оберіть рейс зі списку.");
             }
         }
+
+        
     }
 }

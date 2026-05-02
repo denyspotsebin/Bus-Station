@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            txtName = new TextBox();
-            txtSurname = new TextBox();
             btnOk = new Button();
+            txtSurname = new TextBox();
+            txtName = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,22 +45,9 @@
             panel1.Size = new Size(1024, 660);
             panel1.TabIndex = 0;
             // 
-            // txtName
-            // 
-            txtName.Location = new Point(220, 87);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(423, 23);
-            txtName.TabIndex = 0;
-            // 
-            // txtSurname
-            // 
-            txtSurname.Location = new Point(220, 143);
-            txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(423, 23);
-            txtSurname.TabIndex = 1;
-            // 
             // btnOk
             // 
+            btnOk.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnOk.Location = new Point(220, 241);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(423, 66);
@@ -69,6 +56,24 @@
             btnOk.UseVisualStyleBackColor = true;
             btnOk.Click += btnOk_Click;
             // 
+            // txtSurname
+            // 
+            txtSurname.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtSurname.Location = new Point(220, 143);
+            txtSurname.Name = "txtSurname";
+            txtSurname.PlaceholderText = "Прізвище пасажира . . .";
+            txtSurname.Size = new Size(423, 23);
+            txtSurname.TabIndex = 1;
+            // 
+            // txtName
+            // 
+            txtName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtName.Location = new Point(220, 87);
+            txtName.Name = "txtName";
+            txtName.PlaceholderText = "Ім'я пасажира . . .";
+            txtName.Size = new Size(423, 23);
+            txtName.TabIndex = 0;
+            // 
             // SellTicketForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -76,7 +81,7 @@
             ClientSize = new Size(1222, 736);
             Controls.Add(panel1);
             Name = "SellTicketForm";
-            Text = "SellTicketForm";
+            Text = "Оформлення квитка";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

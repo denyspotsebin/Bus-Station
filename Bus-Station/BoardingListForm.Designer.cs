@@ -43,7 +43,8 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(894, 172);
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.Location = new Point(658, 181);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(186, 67);
             btnClose.TabIndex = 2;
@@ -53,7 +54,8 @@
             // 
             // btnReturnTicket
             // 
-            btnReturnTicket.Location = new Point(894, 68);
+            btnReturnTicket.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnReturnTicket.Location = new Point(658, 65);
             btnReturnTicket.Name = "btnReturnTicket";
             btnReturnTicket.Size = new Size(186, 67);
             btnReturnTicket.TabIndex = 3;
@@ -65,12 +67,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1222, 736);
+            ClientSize = new Size(934, 736);
             Controls.Add(btnReturnTicket);
             Controls.Add(btnClose);
             Controls.Add(lbTickets);
+            MinimumSize = new Size(900, 700);
             Name = "BoardingListForm";
-            Text = "BoardingListForm";
+            Text = "Відомість про рейс";
             ResumeLayout(false);
         }
 

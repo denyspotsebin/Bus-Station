@@ -23,6 +23,19 @@ namespace Bus_Station.Models
         [Browsable(false)]
         public List<Station> IntermediateStations { get; set; } = new List<Station>();
 
+        [DisplayName("Проміжні зупинки")]
+        public string StationsListString
+        {
+            get
+            {
+                if (IntermediateStations == null || IntermediateStations.Count == 0)
+                    return "-";
+
+                var stationNames = IntermediateStations.Select(s => s.Name);
+                return string.Join(", ", stationNames);
+            }
+        }
+
         [Browsable(false)]
         public List<Ticket> Tickets { get; set; } = new List<Ticket>();
 

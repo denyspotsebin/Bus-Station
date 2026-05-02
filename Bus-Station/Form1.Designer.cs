@@ -30,6 +30,7 @@
         {
             dgvTrips = new DataGridView();
             panel1 = new Panel();
+            Label = new Label();
             btnBoardingList = new Button();
             btnAddTrip = new Button();
             btnSellTicket = new Button();
@@ -51,6 +52,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(Label);
             panel1.Controls.Add(btnBoardingList);
             panel1.Controls.Add(btnAddTrip);
             panel1.Controls.Add(btnSellTicket);
@@ -62,10 +64,19 @@
             panel1.Size = new Size(1222, 196);
             panel1.TabIndex = 1;
             // 
+            // Label
+            // 
+            Label.AutoSize = true;
+            Label.Location = new Point(125, 155);
+            Label.Name = "Label";
+            Label.Size = new Size(456, 15);
+            Label.TabIndex = 5;
+            Label.Text = "Оберіть рейс у таблиці нижче, щоб оформити квиток або переглянути відомість:";
+            // 
             // btnBoardingList
             // 
             btnBoardingList.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnBoardingList.Location = new Point(1052, 66);
+            btnBoardingList.Location = new Point(1052, 128);
             btnBoardingList.Name = "btnBoardingList";
             btnBoardingList.Size = new Size(170, 68);
             btnBoardingList.TabIndex = 4;
@@ -76,7 +87,7 @@
             // btnAddTrip
             // 
             btnAddTrip.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddTrip.Location = new Point(1052, 128);
+            btnAddTrip.Location = new Point(1052, 66);
             btnAddTrip.Name = "btnAddTrip";
             btnAddTrip.Size = new Size(170, 68);
             btnAddTrip.TabIndex = 3;
@@ -111,6 +122,7 @@
             txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtSearch.Location = new Point(125, 90);
             txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Введіть місто для пошуку...";
             txtSearch.Size = new Size(428, 23);
             txtSearch.TabIndex = 0;
             txtSearch.TextChanged += txtSearch_TextChanged;
@@ -124,7 +136,7 @@
             Controls.Add(panel1);
             MinimumSize = new Size(1000, 600);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Каса автовокзалу - Головне меню";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTrips).EndInit();
             panel1.ResumeLayout(false);
@@ -141,5 +153,6 @@
         private Button btnSearch;
         private TextBox txtSearch;
         private Button btnBoardingList;
+        private Label Label;
     }
 }
