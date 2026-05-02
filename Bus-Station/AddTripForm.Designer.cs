@@ -81,6 +81,8 @@
             // 
             // dtpDeparture
             // 
+            dtpDeparture.CustomFormat = "dd.MM.yyyy HH:mm";
+            dtpDeparture.Format = DateTimePickerFormat.Custom;
             dtpDeparture.Location = new Point(151, 166);
             dtpDeparture.Name = "dtpDeparture";
             dtpDeparture.Size = new Size(379, 23);

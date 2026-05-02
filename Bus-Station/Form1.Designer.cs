@@ -41,10 +41,10 @@
             // dgvTrips
             // 
             dgvTrips.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTrips.Dock = DockStyle.Bottom;
-            dgvTrips.Location = new Point(0, 194);
+            dgvTrips.Dock = DockStyle.Fill;
+            dgvTrips.Location = new Point(0, 196);
             dgvTrips.Name = "dgvTrips";
-            dgvTrips.Size = new Size(1222, 542);
+            dgvTrips.Size = new Size(1222, 665);
             dgvTrips.TabIndex = 0;
             dgvTrips.CellContentClick += dgvTrips_CellContentClick;
             // 
@@ -62,6 +62,7 @@
             // 
             // btnAddTrip
             // 
+            btnAddTrip.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddTrip.Location = new Point(958, 93);
             btnAddTrip.Name = "btnAddTrip";
             btnAddTrip.Size = new Size(202, 61);
@@ -72,6 +73,7 @@
             // 
             // btnSellTicket
             // 
+            btnSellTicket.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSellTicket.Location = new Point(958, 12);
             btnSellTicket.Name = "btnSellTicket";
             btnSellTicket.Size = new Size(202, 58);
@@ -82,7 +84,8 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(766, 92);
+            btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.Location = new Point(627, 77);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(75, 23);
             btnSearch.TabIndex = 1;
@@ -92,7 +95,8 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(321, 93);
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtSearch.Location = new Point(168, 77);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(428, 23);
             txtSearch.TabIndex = 0;
@@ -102,9 +106,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1222, 736);
-            Controls.Add(panel1);
+            ClientSize = new Size(1222, 861);
             Controls.Add(dgvTrips);
+            Controls.Add(panel1);
+            MinimumSize = new Size(1000, 600);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
