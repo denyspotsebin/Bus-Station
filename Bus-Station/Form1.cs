@@ -18,7 +18,7 @@ namespace Bus_Station
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             var loadedTrips = DataService.LoadTrips();
             _trips = new BindingList<Trip>(loadedTrips);
 
@@ -29,8 +29,8 @@ namespace Bus_Station
         {
             string query = txtSearch.Text.ToLower();
 
-            var filtered = _trips.Where(t => 
-                t.FinalDestination.ToLower().Contains(query) || 
+            var filtered = _trips.Where(t =>
+                t.FinalDestination.ToLower().Contains(query) ||
                 t.IntermediateStations.Any(s => s.Name.ToLower().Contains(query))
                 ).ToList();
 
@@ -44,7 +44,23 @@ namespace Bus_Station
 
         private void btnSellTicket_Click(object sender, EventArgs e)
         {
+            if (dgvTrips.CurrentRow != null)
+            {
+                Trip selectedTrip = (Trip)dgvTrips.CurrentRow.DataBoundItem;
 
+                if (selectedTrip.HasFreeSeats)
+                {
+                    selectedTrip.SoldSeats++;
+                    dgvTrips.Refresh();
+                    DataService.SaveTrips(_trips.ToList());
+
+                    MessageBox.Show($"Квиток на рейс {selectedTrip.TripNumber} оформлено!");
+                }
+                else
+                {
+                    MessageBox.Show("Вільних місць немає!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -53,5 +69,21 @@ namespace Bus_Station
             base.OnFormClosing(e);
         }
 
+        private void btnAddTrip_Click(object sender, EventArgs e)
+        {
+            using (AddTripForm addForm = new AddTripForm())
+            {
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    _trips.Add(addForm.NewTrip);
+                    DataService.SaveTrips(_trips.ToList());
+                }
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

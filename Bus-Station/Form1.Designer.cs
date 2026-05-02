@@ -42,9 +42,9 @@
             // 
             dgvTrips.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTrips.Dock = DockStyle.Bottom;
-            dgvTrips.Location = new Point(0, 186);
+            dgvTrips.Location = new Point(0, 194);
             dgvTrips.Name = "dgvTrips";
-            dgvTrips.Size = new Size(1173, 660);
+            dgvTrips.Size = new Size(1222, 542);
             dgvTrips.TabIndex = 0;
             dgvTrips.CellContentClick += dgvTrips_CellContentClick;
             // 
@@ -57,7 +57,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1173, 188);
+            panel1.Size = new Size(1222, 196);
             panel1.TabIndex = 1;
             // 
             // btnAddTrip
@@ -68,6 +68,7 @@
             btnAddTrip.TabIndex = 3;
             btnAddTrip.Text = "Додати рейс";
             btnAddTrip.UseVisualStyleBackColor = true;
+            btnAddTrip.Click += btnAddTrip_Click;
             // 
             // btnSellTicket
             // 
@@ -95,12 +96,13 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(428, 23);
             txtSearch.TabIndex = 0;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1173, 846);
+            ClientSize = new Size(1222, 736);
             Controls.Add(panel1);
             Controls.Add(dgvTrips);
             Name = "Form1";
