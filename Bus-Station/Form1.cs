@@ -1,10 +1,11 @@
+using Bus_Station.Models;
+using Bus_Station.Services;
+using BusStationCashier.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using Bus_Station.Models;
-using Bus_Station.Services;
 
 namespace Bus_Station
 {
@@ -50,15 +51,26 @@ namespace Bus_Station
 
                 if (selectedTrip.HasFreeSeats)
                 {
-                    selectedTrip.SoldSeats++;
-                    dgvTrips.Refresh();
-                    DataService.SaveTrips(_trips.ToList());
+                    using (SellTicketForm sellForm = new SellTicketForm())
+                    {
+                        if (sellForm.ShowDialog() == DialogResult.OK)
+                        {
+                            Ticket newTicket = sellForm.CreatedTicket;
+                            newTicket.SelectedTrip = selectedTrip; 
+                            newTicket.SeatNumber = selectedTrip.Tickets.Count + 1;
 
-                    MessageBox.Show($"Квиток на рейс {selectedTrip.TripNumber} оформлено!");
+                            selectedTrip.Tickets.Add(newTicket);
+
+                            dgvTrips.Refresh();
+                            DataService.SaveTrips(_trips.ToList());
+
+                            MessageBox.Show("Квиток успішно продано!");
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Вільних місць немає!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Місць немає!");
                 }
             }
         }

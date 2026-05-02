@@ -43,7 +43,6 @@ namespace Bus_Station
                 FinalDestination = txtDestination.Text,
                 DepartureTime = dtpDeparture.Value,
                 TotalSeats = (int)numTotalSeats.Value,
-                SoldSeats = 0
             };
 
             this.DialogResult = DialogResult.OK;
