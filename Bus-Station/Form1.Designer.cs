@@ -42,10 +42,14 @@
             // 
             // dgvTrips
             // 
+            dgvTrips.AllowUserToAddRows = false;
+            dgvTrips.AllowUserToDeleteRows = false;
             dgvTrips.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTrips.Dock = DockStyle.Fill;
             dgvTrips.Location = new Point(0, 196);
             dgvTrips.Name = "dgvTrips";
+            dgvTrips.ReadOnly = true;
+            dgvTrips.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTrips.Size = new Size(1222, 665);
             dgvTrips.TabIndex = 0;
             dgvTrips.CellContentClick += dgvTrips_CellContentClick;

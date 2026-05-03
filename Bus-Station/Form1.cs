@@ -41,6 +41,8 @@ namespace Bus_Station
                         "Результат пошуку",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                txtSearch.Clear();
+                return;
             }
             dgvTrips.DataSource = new BindingList<Trip>(filtered);
 
@@ -53,13 +55,22 @@ namespace Bus_Station
 
         private void btnSellTicket_Click(object sender, EventArgs e)
         {
-            if (dgvTrips.CurrentRow != null)
+
+
+
+            if (dgvTrips.CurrentRow != null)    
             {
                 Trip selectedTrip = (Trip)dgvTrips.CurrentRow.DataBoundItem;
 
+                if (selectedTrip.DepartureTime <= DateTime.Now)
+                {
+                    MessageBox.Show("Рейс вже відправився! Продаж закритий.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (selectedTrip.HasFreeSeats)
                 {
-                    using (SellTicketForm sellForm = new SellTicketForm())
+                    using (SellTicketForm sellForm = new SellTicketForm(selectedTrip))
                     {
                         if (sellForm.ShowDialog() == DialogResult.OK)
                         {
@@ -72,13 +83,13 @@ namespace Bus_Station
                             dgvTrips.Refresh();
                             DataService.SaveTrips(_trips.ToList());
 
-                            MessageBox.Show("Квиток успішно продано!");
+                            MessageBox.Show("Квиток успішно продано!", "Результат операції", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Місць немає!");
+                    MessageBox.Show("Місць немає!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -91,7 +102,7 @@ namespace Bus_Station
 
         private void btnAddTrip_Click(object sender, EventArgs e)
         {
-            using (AddTripForm addForm = new AddTripForm())
+            using (AddTripForm addForm = new AddTripForm(_trips.ToList()))
             {
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
@@ -116,7 +127,7 @@ namespace Bus_Station
                 {
                     boardingForm.ShowDialog();
 
-                    if (boardingForm.DialogResult == DialogResult.OK)
+                    if (boardingForm.HasChanges)
                     {
                         dgvTrips.Refresh();
                         DataService.SaveTrips(_trips.ToList());

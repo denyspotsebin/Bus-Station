@@ -12,6 +12,7 @@ namespace Bus_Station
 {
     public partial class BoardingListForm : Form
     {
+        public bool HasChanges { get; private set; } = false;
         private Trip _currentTrip;
 
         public BoardingListForm(Trip trip)
@@ -47,6 +48,15 @@ namespace Bus_Station
 
         private void btnReturnTicket_Click(object sender, EventArgs e)
         {
+            if (_currentTrip.DepartureTime <= DateTime.Now)
+            {
+                MessageBox.Show("Цей рейс вже відправився! Повернення квитків неможливе.",
+                                "Відмова операції",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
             if (lbTickets.SelectedIndex != -1 && _currentTrip.Tickets.Count > 0)
             {
                 int index = lbTickets.SelectedIndex;
@@ -62,12 +72,12 @@ namespace Bus_Station
                 {
                     _currentTrip.Tickets.RemoveAt(index);
                     UpdateTicketList();
-                    this.DialogResult = DialogResult.OK;
+                    HasChanges = true;
                 }
             }
             else
             {
-                MessageBox.Show("Оберіть квиток для повернення!");
+                MessageBox.Show("Оберіть квиток для повернення!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }
