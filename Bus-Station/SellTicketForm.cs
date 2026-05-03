@@ -25,21 +25,29 @@ namespace Bus_Station
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtSurname.Text))
+            string name = txtName.Text.Trim();
+            string surname = txtSurname.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(surname))
             {
                 MessageBox.Show("Заповніть дані пасажира!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            if (txtName.Text.Any(char.IsDigit) || txtSurname.Text.Any(char.IsDigit))
+            if (name.Length < 2 || surname.Length < 2)
             {
-                MessageBox.Show("Ім'я або прізвище не може мати цифри!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Ім'я та прізвище повинні містити щонайменше 2 символи!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            if (name.Any(char.IsDigit) || surname.Any(char.IsDigit))
+            {
+                MessageBox.Show("Ім'я або прізвище не може містити цифри!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             CreatedTicket = new Ticket
             {
-                PassengerName = txtName.Text,
-                PassengerSurname = txtSurname.Text,
+                PassengerName = name,
+                PassengerSurname = surname
             };
 
             this.DialogResult = DialogResult.OK;

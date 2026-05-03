@@ -40,15 +40,22 @@ namespace Bus_Station
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNumber.Text))
+            string tripNum = txtNumber.Text.Trim();
+            string destination = txtDestination.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(tripNum) || tripNum.Length < 2)
             {
-                MessageBox.Show("Ведіть номер рейсу!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введіть коректний номер рейсу (мінімум 2 символи)!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            if (string.IsNullOrWhiteSpace(txtDestination.Text))
+            if (string.IsNullOrWhiteSpace(destination) || destination.Length < 3)
             {
-                MessageBox.Show("Введіть пункт призначення!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введіть коректний пункт призначення (мінімум 3 символи)!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (destination.Any(char.IsDigit))
+            {
+                MessageBox.Show("Назва міста не може містити цифри!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (dtpDeparture.Value <= DateTime.Now)
@@ -70,8 +77,8 @@ namespace Bus_Station
 
             NewTrip = new Trip
             {
-                TripNumber = txtNumber.Text,
-                FinalDestination = txtDestination.Text,
+                TripNumber = tripNum,
+                FinalDestination = destination,
                 DepartureTime = dtpDeparture.Value,
                 TotalSeats = (int)numTotalSeats.Value,
                 IntermediateStations = _tempStations.ToList()
@@ -88,11 +95,13 @@ namespace Bus_Station
 
         private void btnAddStation_Click(object sender, EventArgs e)
         {
+            string stationName = txtStationName.Text.Trim();
+
             if (!string.IsNullOrWhiteSpace(txtStationName.Text))
             {
-                if (string.IsNullOrWhiteSpace(txtDestination.Text))
+                if (string.IsNullOrWhiteSpace(stationName) || stationName.Length < 3 || stationName.Any(char.IsDigit))
                 {
-                    MessageBox.Show("Спочатку введіть пунт призначння!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Введіть коректну назву зупинки (мінімум 3 літери, без цифр)!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
