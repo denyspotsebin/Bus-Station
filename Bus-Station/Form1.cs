@@ -74,9 +74,18 @@ namespace Bus_Station
                     {
                         if (sellForm.ShowDialog() == DialogResult.OK)
                         {
+                            int assignedSeat = 1;
+                            for (int i = 1; i <= selectedTrip.TotalSeats; i++)
+                            {
+                                if (!selectedTrip.Tickets.Any(t => t.SeatNumber == i))
+                                {
+                                    assignedSeat = i;
+                                    break;
+                                }
+                            }
                             Ticket newTicket = sellForm.CreatedTicket;
                             newTicket.SelectedTrip = selectedTrip;
-                            newTicket.SeatNumber = selectedTrip.Tickets.Count + 1;
+                            newTicket.SeatNumber = assignedSeat;
 
                             selectedTrip.Tickets.Add(newTicket);
 
@@ -91,6 +100,11 @@ namespace Bus_Station
                 {
                     MessageBox.Show("Місць немає!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть рейс зі списку.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -136,7 +150,7 @@ namespace Bus_Station
             }
             else
             {
-                MessageBox.Show("Будь ласка, оберіть рейс зі списку.");
+                MessageBox.Show("Будь ласка, оберіть рейс зі списку.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
